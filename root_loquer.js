@@ -64,7 +64,10 @@ function get_root_locus(num, den, gain) {
     tf_loop_rat = math.format(math.rationalize(get_system_tf(num, den, gain)))
     tf_loop_rat_num = tf_loop_rat.split(' / ')[0]
     tf_loop_rat_den = tf_loop_rat.split(' / ')[1]
-    return roots(get_poly_coeffs_from_string(tf_loop_rat_den))
+    if(tf_loop_rat_den)
+        return roots(get_poly_coeffs_from_string(tf_loop_rat_den))
+    else
+        return []
 }
 
 function linspace(ini, end, points) {
@@ -83,6 +86,42 @@ function logspace(base, iniex, endex, points) {
         vals.push(base**exponents[j])
     }
     return vals
+}
+
+function max(arr) {
+    if (arr.length === 0) {
+        return -1;
+    }
+
+    var max = arr[0];
+    var maxIndex = 0;
+
+    for (var i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            maxIndex = i;
+            max = arr[i];
+        }
+    }
+
+    return max;
+}
+
+function min(arr) {
+    if (arr.length === 0) {
+        return -1;
+    }
+
+    var min = arr[0];
+    var minIndex = 0;
+
+    for (var i = 1; i < arr.length; i++) {
+        if (arr[i] < min) {
+            minIndex = i;
+            min = arr[i];
+        }
+    }
+
+    return min;
 }
 
 function argmin(arr) {
